@@ -1,8 +1,8 @@
 import getpass
 import random
 import re
+import signal
 import sys
-import time
 
 import stem
 import stem.connection
@@ -42,10 +42,7 @@ def main():
     print("Authentication was successful!")
     print("Tor is running version %s" % controller.get_version())
 
-    try:
-        time.sleep(60 * 60 * 24 * 365)
-    except KeyboardInterrupt:
-        print('')
+    signal.pause()
 
 
 def resolve_stream(stream):
