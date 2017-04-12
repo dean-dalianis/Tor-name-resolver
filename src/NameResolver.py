@@ -1,5 +1,4 @@
 import getpass
-import random
 import re
 import signal
 import sys
@@ -33,16 +32,20 @@ def main():
         print("Unable to authenticate: %s" % exc)
         sys.exit(1)
 
-    controller.set_options({
-        '__LeaveStreamsUnattached': '1'
-    })
+    try:
+        controller.set_options({
+            '__LeaveStreamsUnattached': '1'
+        })
 
-    controller.add_event_listener(resolve_stream, EventType.STREAM)
+        controller.add_event_listener(resolve_stream, EventType.STREAM)
 
-    print("Authentication was successful!")
-    print("Tor is running version %s" % controller.get_version())
+        print("Authentication was successful!")
+        print("Tor is running version %s" % controller.get_version())
 
-    signal.pause()
+        signal.pause()
+    finally:
+        controller.remove_event_listener(attach_stream)
+        controller.reset_conf('__LeaveStreamsUnattached')
 
 
 def resolve_stream(stream):
@@ -51,7 +54,7 @@ def resolve_stream(stream):
         if p.match(stream.target_address):
             resolve_blockstack(stream)
         else:
-            attach(stream)
+            attach_stream(stream)
 
 
 def resolve_blockstack(stream):
@@ -59,10 +62,9 @@ def resolve_blockstack(stream):
     print('Blockstack domain found: ', stream.target_address)
 
 
-def attach(stream):
-    # We should change circuit selection
-    circuit = random.choice([circ for circ in controller.get_circuits() if circ.status == stem.CircStatus.BUILT])
-    controller.attach_stream(stream.id, circuit.id)
+def attach_stream(stream):
+    controller.attach_stream(stream.id, 0)
+    print('Attached stream %s' % stream.id)
 
 
 if __name__ == '__main__':
