@@ -9,7 +9,6 @@ from stem.control import Controller, EventType
 
 controller = None
 
-
 def main():
     global controller
     try:
@@ -42,7 +41,11 @@ def main():
         print("Authentication was successful!")
         print("Tor is running version %s" % controller.get_version())
 
-        signal.pause()
+        if sys.platform == "linux" or sys.platform == "linux2":
+            signal.pause()
+        elif sys.platform == "win32":
+            from os import system
+            system("pause")
     finally:
         controller.remove_event_listener(attach_stream)
         controller.reset_conf('__LeaveStreamsUnattached')
