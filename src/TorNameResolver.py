@@ -1,13 +1,18 @@
 import getpass
 import re
 import signal
-import sys
-
 import stem
 import stem.connection
+import sys
 from stem.control import Controller, EventType
 
+from BlockstackResolution import resolve_blockstack
+
+SERVER_IP = '127.0.0.1'
+SERVER_PORT = 6264
+
 controller = None
+
 
 def main():
     global controller
@@ -55,14 +60,12 @@ def resolve_stream(stream):
     if stream.status == 'NEW':
         p = re.compile(".*\.id.onion$", re.IGNORECASE)
         if p.match(stream.target_address):
-            resolve_blockstack(stream)
+            onion_address = resolve_blockstack(stream)
+            controller.msg('REDIRECTSTREAM ' + stream.id + ' ' + onion_address)
+            print("Matched %s to %s" % (stream.target_address, onion_address))
+            attach_stream(stream)
         else:
             attach_stream(stream)
-
-
-def resolve_blockstack(stream):
-    # Blockstack resolution to be written here
-    print('Blockstack domain found: ', stream.target_address)
 
 
 def attach_stream(stream):
