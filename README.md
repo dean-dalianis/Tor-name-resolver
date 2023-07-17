@@ -1,5 +1,3 @@
-Certainly! Here's the converted version of the provided content to a standard README.md format:
-
 # Tor-name-resolver
 
 ![Python](https://img.shields.io/badge/Python-3776AB.svg?style&logo=Python&logoColor=white) ![GitHub top language](https://img.shields.io/github/languages/top/dean-dalianis/Tor-name-resolver?style&color=5D6D7E) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/dean-dalianis/Tor-name-resolver?style&color=5D6D7E) ![GitHub license](https://img.shields.io/github/license/dean-dalianis/Tor-name-resolver?style&color=5D6D7E)
