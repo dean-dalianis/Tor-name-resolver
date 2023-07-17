@@ -2,8 +2,6 @@
 
 ![Python](https://img.shields.io/badge/Python-3776AB.svg?style&logo=Python&logoColor=white) ![GitHub top language](https://img.shields.io/github/languages/top/dean-dalianis/Tor-name-resolver?style&color=5D6D7E) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/dean-dalianis/Tor-name-resolver?style&color=5D6D7E) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
----
-
 tor-name-resolver is a project designed to act as a Tor controller that resolves onion addresses using Blockstack. It
 connects to a Tor instance, authenticates, and handles streams. By listening for new streams, it identifies onion
 addresses, retrieves the associated Blockstack domain profile, and extracts the corresponding onion address. This
