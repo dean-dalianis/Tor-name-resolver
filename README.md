@@ -1,7 +1,7 @@
 # Tor Name Resolver
 
 ![GitHub top language](https://img.shields.io/github/languages/top/dean-dalianis/tor-name-resolver?style=flat-square&color=5D6D7E)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/dean-dalianis/blake-rainbow-tables?style=flat-square&color=5D6D7E)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/dean-dalianis/tor-name-resolver?style=flat-square&color=5D6D7E)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 tor-name-resolver is a project designed to act as a Tor controller that resolves onion addresses using Blockstack. It
